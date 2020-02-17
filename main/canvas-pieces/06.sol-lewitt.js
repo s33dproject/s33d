@@ -10,6 +10,7 @@
 
 const canvasSketch = require('canvas-sketch');
 const random = require('canvas-sketch-util/random');
+const palettes = require('nice-color-palettes');
 const { lerp, lerpArray } = require('canvas-sketch-util/math');
 
 // const palettes = require('nice-color-palettes');
@@ -28,11 +29,15 @@ const sketch = ({ width, height }) => {
   const gridYCount = gridXCount;
   const skipEdge = true;
   const count = 40;
-  const randomColors = false;
+  const randomColors = true;
   const splicing = true;
 
   // Use a palette inspired by Sol LeWitt
-  const palette = ['#ea3f3f', '#76b9ed', '#f2d843'];
+  const colorCount = 3;
+
+  const palette = random.shuffle(random.pick(palettes))
+    .slice(0, colorCount);
+  //const palette = ['#ea3f3f', '#76b9ed', '#f2d843'];
 
   // Or, use a random palette
   // const palette = random.shuffle(random.pick(palettes)).slice(0, 3);
@@ -132,7 +137,7 @@ const sketch = ({ width, height }) => {
         context.lineTo(point[0], point[1]);
       });
       context.fillStyle = context.strokeStyle = item.color;
-      context.lineWidth = 0.75;
+      context.lineWidth = 0.7;
       context.globalAlpha = 1;
       context.lineJoin = 'round';
       context.lineCap = 'round';

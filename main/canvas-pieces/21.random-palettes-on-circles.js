@@ -4,7 +4,7 @@ const random = require('canvas-sketch-util/random');
 const palettes = require('nice-color-palettes');
 
 const settings = {
-  dimensions: [ 2048, 2048 ],
+  dimensions: [2048, 2048],
 };
 
 const sketch = () => {
@@ -17,18 +17,18 @@ const sketch = () => {
     const count = 25;
     for (let x = 0; x < count; x++) {
       for (let y = 0; y < count; y++) {
-      const u = count <= 1 ? 0.5 : x / (count - 1); 
-      const v = count <= 1 ? 0.5 : y / (count - 1);
-      points.push({
+        const u = count <= 1 ? 0.5 : x / (count - 1);
+        const v = count <= 1 ? 0.5 : y / (count - 1);
+        points.push({
           color: random.pick(palette),
           //radius: random.value() * 0.1,
           radius: Math.abs(0.01 + random.gaussian() * 0.01),
           //radius: Math.max(0, random.gaussian() * 0.01),
-          position: [ u, v ]
-      });
+          position: [u, v]
+        });
+      }
     }
-  }
-  return points;
+    return points;
   };
 
   random.setSeed(10);
@@ -41,12 +41,12 @@ const sketch = () => {
 
     points.forEach(data => {
       const {
-          color,
-          position,
-          radius
+        color,
+        position,
+        radius
       } = data;
 
-      const [ u, v ]  = position;
+      const [u, v] = position;
 
       const x = lerp(margin, width - margin, u);
       const y = lerp(margin, height - margin, v);

@@ -16,7 +16,7 @@ const settings = {
   // Output resolution, we use a high value for print artwork
   pixelsPerInch: 72,
   // US Letter size 8.5x11 inches
-  dimensions: [ 8.5, 11 ],
+  dimensions: [8.5, 11],
   // all our dimensions and rendering units will use inches
   units: 'in'
 };
@@ -25,7 +25,7 @@ const sketch = ({ width, height, render }) => {
   let currentSeed;
 
   // Build a list of "layers", each corresponding to a print color
-  const colors = [ '#ffe800', '#f15060', '#0078bf' ];
+  const colors = ['#ffe800', '#f15060', '#0078bf'];
   const layers = colors.map((color, i, list) => {
     // Create a render buffer for each color layer
     const canvas = document.createElement('canvas');
@@ -91,12 +91,12 @@ const sketch = ({ width, height, render }) => {
   // --
 
   // Get a random float between [min..max] range
-  function random (min, max) {
+  function random(min, max) {
     return Math.random() * (max - min) + min;
   }
 
   // Return a list of random squares between [0..1] range
-  function createShapes (count = 10) {
+  function createShapes(count = 10) {
     return Array.from(new Array(count)).map(() => {
       const margin = 2;
       const x = random(margin, width - margin);
@@ -104,7 +104,7 @@ const sketch = ({ width, height, render }) => {
       const size = random(0.05, 2);
       const radius = size / 2;
 
-      const types = [ 'square', 'circle', 'arc' ];
+      const types = ['square', 'circle', 'arc'];
       const type = types[Math.floor(Math.random() * types.length)];
       switch (type) {
         case 'square':
@@ -134,7 +134,7 @@ const sketch = ({ width, height, render }) => {
   }
 
   // A function to update the generative artwork with new content
-  function generate () {
+  function generate() {
     currentSeed = String(Math.floor(Math.random() * 100000));
     seedRandom(currentSeed, { global: true });
 
@@ -150,14 +150,14 @@ const sketch = ({ width, height, render }) => {
   }
 
   // Serialize the layer data to a JSON string
-  function serialize () {
+  function serialize() {
     return JSON.stringify(layers.map(layer => {
       return { color: layer.color, alpha: layer.alpha };
     }));
   }
 
   // Draw each layer to its own canvas buffer
-  function drawLayers (props, mask) {
+  function drawLayers(props, mask) {
     const {
       canvasWidth, canvasHeight,
       width, height,
