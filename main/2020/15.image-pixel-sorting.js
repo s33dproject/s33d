@@ -1,15 +1,15 @@
-const canvasSketch = require('canvas-sketch');
-const load = require('load-asset');
+const canvasSketch = require("canvas-sketch");
+const load = require("load-asset");
 
 // We create an 'async' sketch
 canvasSketch(async ({ update }) => {
   // Await the image loader, it returns the loaded <img>
-  const image = await load('images/maradona.jpg'); //
+  const image = await load("images/mam.jpg"); //
 
   // Once the image is loaded, we can update the output
   // settings to match it
   update({
-    dimensions: [ image.width, image.height ]
+    dimensions: [image.width, image.height],
   });
 
   // Now render our sketch

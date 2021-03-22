@@ -1,14 +1,14 @@
-const canvasSketch = require('canvas-sketch');
-const load = require('load-asset');
+const canvasSketch = require("canvas-sketch");
+const load = require("load-asset");
 
 // Import Two.js - make sure to have greater than v0.7.0-alpha.1
 // because previous versions don't support module loading or headless environments
-const Two = require('two.js');
+const Two = require("two.js");
 
 const settings = {
-  dimensions: [ 2048, 2048 ],
+  dimensions: [2048, 2048],
   // Make the loop animated
-  animate: true
+  animate: true,
 };
 
 const sketch = async ({ canvas }) => {
@@ -17,7 +17,7 @@ const sketch = async ({ canvas }) => {
 
   // Generate the image and wait for load to finish before
   // moving forward with rendering.
-  const image = await load('images/molko.jpeg');
+  const image = await load("images/mam.jpg");
 
   // Get the dimensions of the baboon image
   const imageWidth = image.width;
@@ -37,10 +37,10 @@ const sketch = async ({ canvas }) => {
     // Set the fill of the strip to be a texture
     sprite.fill = new Two.Texture(image);
     // Make the texture repeat in the x direction
-    sprite.fill.repeat = 'repeat-x';
+    sprite.fill.repeat = "repeat-x";
     // Offset the image's y position so that when all strips line up
     // they roughly create the reference image in full
-    sprite.fill.offset.y = imageHeight * ((1 - pct) - 0.5);
+    sprite.fill.offset.y = imageHeight * (1 - pct - 0.5);
     // Set the stroke to be the fill ensuring that there isn't any
     // leftover white space between the strips
     sprite.stroke = sprite.fill;
@@ -50,7 +50,7 @@ const sketch = async ({ canvas }) => {
   }
 
   return {
-    resize ({ pixelRatio, width, height }) {
+    resize({ pixelRatio, width, height }) {
       // Update width and height of Two.js scene based on
       // canvas-sketch auto changing viewport parameters
       two.width = width;
@@ -67,7 +67,7 @@ const sketch = async ({ canvas }) => {
       // Scale the scene to fit the canvas
       two.scene.scale = two.width / imageWidth;
     },
-    render ({ time }) {
+    render({ time }) {
       // Define the speed at which the offset smear occurs
       const speed = (1 + Math.sin(time * 5)) / 2;
 
@@ -82,7 +82,7 @@ const sketch = async ({ canvas }) => {
 
       // Update two.js via the `render` method - *not* the `update` method.
       two.render();
-    }
+    },
   };
 };
 

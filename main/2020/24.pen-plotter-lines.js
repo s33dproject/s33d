@@ -3,20 +3,19 @@
  * but supporting AxiDraw V3 Mechanical Pen Plotter (i.e. export as SVG).
  */
 
-const canvasSketch = require('canvas-sketch');
-const { createRandom, getRandomSeed } = require('canvas-sketch-util/random');
-const { lerp } = require('canvas-sketch-util/math');
-const { renderPolylines } = require('canvas-sketch-util/penplot');
-const { vec2 } = require('gl-matrix');
+const canvasSketch = require("canvas-sketch");
+const { createRandom, getRandomSeed } = require("canvas-sketch-util/random");
+const { lerp } = require("canvas-sketch-util/math");
+const { renderPolylines } = require("canvas-sketch-util/penplot");
+const { vec2 } = require("gl-matrix");
 
 const settings = {
-  dimensions: 'A4',
-  units: 'cm'
+  dimensions: "A4",
+  units: "cm",
 };
 
 const sketch = ({ context, width, height, units, render }) => {
-
-  const colors = [ '#000000', '#EEF0F0' ];
+  const colors = ["#000000", "#EEF0F0"];
   const [background, foreground] = colors;
 
   // Some constant variables here
@@ -31,8 +30,8 @@ const sketch = ({ context, width, height, units, render }) => {
   };
 
   // On pressing the N key, we re-generate and re-render
-  window.addEventListener('keydown', (ev) => {
-    if (ev.key === 'n') {
+  window.addEventListener("keydown", (ev) => {
+    if (ev.key === "n") {
       ev.preventDefault();
       reset();
       render();
@@ -44,14 +43,15 @@ const sketch = ({ context, width, height, units, render }) => {
 
   // We enclose the renderPolylines within a function
   // so that it always picks up the current 'lines' array
-  return () => renderPolylines(lines, {
-    context,
-    width,
-    height,
-    units
-  });
+  return () =>
+    renderPolylines(lines, {
+      context,
+      width,
+      height,
+      units,
+    });
 
-  function generate (random) {
+  function generate(random) {
     const length = random.range(0.25, 2);
 
     let lineCount = random.rangeFloor(4, 14);
@@ -72,7 +72,7 @@ const sketch = ({ context, width, height, units, render }) => {
         const B = j / (lineSegments - 1);
         const y = lerp(margin, height - margin, B);
 
-        const point = [ x, y ];
+        const point = [x, y];
         points.push(point);
       }
     }
@@ -80,18 +80,18 @@ const sketch = ({ context, width, height, units, render }) => {
     const tileSize = (width - margin * 2) / (lineCount - 1);
     const ix = random.rangeFloor(0, lineCount - 1);
     const center = [
-      margin + (ix * tileSize) + tileSize / 2,
-      lerp(margin, height - margin, random.value())
+      margin + ix * tileSize + tileSize / 2,
+      lerp(margin, height - margin, random.value()),
     ];
 
     // Turn each point into a line segment
-    return points.map(point => {
+    return points.map((point) => {
       let direction = vec2.sub([], point, center);
       vec2.normalize(direction, direction);
 
       const a = vec2.scaleAndAdd([], point, direction, length / 2);
       const b = vec2.scaleAndAdd([], point, direction, -length / 2);
-      return [ a, b ];
+      return [a, b];
     });
   }
 };
