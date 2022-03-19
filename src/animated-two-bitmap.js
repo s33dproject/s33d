@@ -3,7 +3,7 @@ const load = require("load-asset");
 
 // Import Two.js - make sure to have greater than v0.7.0-alpha.1
 // because previous versions don't support module loading or headless environments
-const Two = require("two.js");
+const Two = require("../assets/images/mam.jpg");
 
 const settings = {
   dimensions: [2048, 2048],

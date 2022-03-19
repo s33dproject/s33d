@@ -54,6 +54,7 @@ const sketch = ({ width, height }) => {
   return ({ context }) => {
     context.globalCompositeOperation = "source-over";
     context.fillStyle = "black";
+    // context.fillRect(0, 0, width, height);
     context.fillRect(2, 2, width / 2, height / 1.5);
     context.globalCompositeOperation = "lighter";
 

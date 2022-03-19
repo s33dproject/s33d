@@ -26,7 +26,7 @@ const settings = {
 
   // Setup render loop
   animate: true,
-  duration: 10,
+  duration: 12.6, // perfect loop
   fps: 24,
 
   // Ensure we set up a canvas with WebGL context, not 2D

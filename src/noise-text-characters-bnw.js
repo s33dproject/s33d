@@ -14,13 +14,12 @@ const settings = {
 
 const sketch = () => {
   const colorCount = random.rangeFloor(1, 6);
-  const palette = random.shuffle(random.pick(palettes))
-    .slice(0, colorCount);
-    const background = 'hsl(0, 0%, 94%)';
+  const palette = ['hsl(0, 0%, 94%)'];
+    const background = 'black';
 
   const createGrid = () => {
     const points = [];
-    const count = 30;
+    const count = 40;
     for (let x = 0; x < count; x++) {
       for (let y = 0; y < count; y++) {
       const u = count <= 1 ? 0.5 : x / (count - 1); 

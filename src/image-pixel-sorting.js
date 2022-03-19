@@ -4,7 +4,7 @@ const load = require("load-asset");
 // We create an 'async' sketch
 canvasSketch(async ({ update }) => {
   // Await the image loader, it returns the loaded <img>
-  const image = await load("images/mam.jpg"); //
+  const image = await load("../assets/images/palmer.jpg"); //
 
   // Once the image is loaded, we can update the output
   // settings to match it
