@@ -40,10 +40,10 @@ const sketch = ({ context }) => {
   // Setup a geometry
   const geometry = new THREE.SphereGeometry(1, 32, 16);
   const loader = new THREE.TextureLoader();
-  const earth = new loader.load("images/earth.jpg");
-  const mars = new loader.load("images/mars.jpg");
-  const moon = new loader.load("images/moon.jpg");
-  const sun = new loader.load("images/sun.jpg");
+  const earth = new loader.load("/assets/images/earth.jpg");
+  const mars = new loader.load("/assets/images/mars.jpg");
+  const moon = new loader.load("/assets/images/moon.jpg");
+  const sun = new loader.load("/assets/images/sun.jpg");
 
   // Setup a bodies material
   const bodiesGroup = new THREE.Group();

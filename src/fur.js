@@ -10,7 +10,7 @@ const dark = '#1c1c1c';
 const light= '#eeeeee';
 
 const settings = {
-  seed: random.getSeed(),
+  // seed: random.getSeed(),
   dimensions: [ 2048, 2048 ],
   pixelsPerInch: 300,
   exportPixelRatio: 2,
